@@ -1,0 +1,7 @@
+#!/bin/bash
+javac -cp src -d build src/test/Test.java
+if [ $# -eq 2 ]; then
+java -cp build test.Test $1 $2
+else
+java -cp build test.Test
+fi
