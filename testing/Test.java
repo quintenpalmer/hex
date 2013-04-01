@@ -1,4 +1,4 @@
-package test;
+package testing;
 
 import model.Loc;
 import java.io.*;
@@ -16,7 +16,7 @@ public class Test{
 			instr = args[1];
 		}
 		else{
-			File finstr = new File("data/instr.txt");
+			File finstr = new File("data/instruction.txt");
 			try{
 				BufferedReader reader = new BufferedReader(new FileReader(finstr));
 				String line;
@@ -48,8 +48,8 @@ public class Test{
 	}
 
 	private static void createTest(int debug){
-		File fin = new File("data/creates.txt");
-		File fout = new File("data/createCheck.txt");
+		File fin = new File("data/createTest.txt");
+		File fout = new File("data/createTest.log");
 		try{
 			BufferedReader reader = new BufferedReader(new FileReader(fin));
 			BufferedWriter writer = new BufferedWriter(new FileWriter(fout));
@@ -124,10 +124,10 @@ public class Test{
 			System.err.println(e);
 		}
 	}
-	
+
 	private static void distTest(int debug){
-		File fin = new File("data/dists.txt");
-		File fout = new File("data/distCheck.txt");
+		File fin = new File("data/distTest.txt");
+		File fout = new File("data/distTest.log");
 
 		try{
 			BufferedReader reader = new BufferedReader(new FileReader(fin));
