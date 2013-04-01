@@ -6,14 +6,12 @@ if [ $1 == jc ] || [ $1 == javacompile ]; then
 	fi
 	javac -cp src/java:testing -d build testing/Test.java
 elif [ $1 == j ] || [ $1 == java ]; then
-	if [ $# -eq 3 ]; then
-		java -cp build testing.Test $2 $3
-	else
-		java -cp build testing.Test
-	fi
+	shift
+	java -cp build testing.Test $@
 elif [ $1 == p ] || [ $1 == python ]; then
 	PYTHONPATH=$PYTHONPATH:src/python
-	python testing/test.py
+	shift
+	python testing/test.py $@
 elif [ $1 == clean ]; then
 	rm -r build
 fi
