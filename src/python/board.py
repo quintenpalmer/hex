@@ -8,9 +8,7 @@ class Board:
 		def add_piece(x,y,z):
 			tmp = Piece(x,y,z)
 			self.locs[(tmp.x(),tmp.y(),tmp.z())] = tmp
-		x = 0
-		y = 0
-		z = 0
+		x,y,z = 0
 		add_piece(x,y,z)
 		for i in range(1,size+1):
 			x += i

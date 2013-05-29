@@ -5,20 +5,20 @@ class Loc:
 		self.y = y
 		self.z = z
 		if do_reduce:
-			tmp = self.normal((0,0,0))
-			self.x = tmp[0]
-			self.y = tmp[1]
-			self.z = tmp[2]
+			self.x, self.y, self. z= self.normal(0,0,0)
+
 	def distance(self,loc):
-		dists = self.normal((loc.x,loc.y,loc.z))
+		dists = self.normal(loc.x,loc.y,loc.z)
 		return abs(dists[0])+abs(dists[1])+abs(dists[2])
+
 	def __eq__(self,loc):
 		return loc.x == self.x and loc.y == self.y and loc.z == self.z
-	def normal(self,origin):
+
+	def normal(self,ox,oy,oz):
 		# The 'r' coords are the relative to the origin coordinates
-		rx = self.x - origin[0]
-		ry = self.y - origin[1]
-		rz = self.z - origin[2]
+		rx = self.x - ox
+		ry = self.y - oy
+		rz = self.z - oz
 		# the 'a' coords are the absolute values of the coordinates
 		ax = abs(self.x)
 		ay = abs(self.y)
@@ -147,10 +147,12 @@ class Loc:
 			elif ax == ay and ay == az:
 				amount = -ax
 		return (rx - amount, ry + amount, rz - amount)
+
 	def near_zero(self,n1,n2):
 		if abs(n1) < abs(n2):
 			return n1
 		else:
 			return n2
+
 	def __repr__(self):
 		return "x: %s y: %s z: %s" % (str(self.x),str(self.y),str(self.z))
