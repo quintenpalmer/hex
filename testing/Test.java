@@ -16,7 +16,7 @@ public class Test{
 			instr = args[1];
 		}
 		else{
-			File finstr = new File("data/instruction.txt");
+			File finstr = new File("config.txt");
 			try{
 				BufferedReader reader = new BufferedReader(new FileReader(finstr));
 				String line;

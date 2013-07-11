@@ -7,17 +7,22 @@ type Loc struct {
 	neighbors []*Loc
 }
 
-func NewLoc(x,y,z int) *Loc {
+func NewRawLoc(x,y,z int) *Loc {
 	loc := new(Loc)
 	loc.x = x
 	loc.y = y
 	loc.z = z
 	loc.neighbors = make([]*Loc,0)
+	return loc
+}
+
+func NewLoc(x,y,z int) *Loc {
+	loc := NewRawLoc(x,y,z)
 	loc.x,loc.y,loc.z = loc.Normalize(0,0,0)
 	return loc
 }
 
-func (loc *Loc) eq(otherLoc *Loc) bool {
+func (loc *Loc) Eq(otherLoc *Loc) bool {
 	return loc.x == otherLoc.x && loc.y == otherLoc.y && loc.z == otherLoc.z
 }
 
@@ -41,7 +46,7 @@ func (loc *Loc) IsLegalNeighbor(otherLoc *Loc) bool {
 
 func (loc *Loc) IsFriend(otherLoc *Loc) bool {
 	for _,l := range loc.neighbors {
-		if loc.eq(l) {
+		if loc.Eq(l) {
 			return true
 		}
 	}

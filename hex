@@ -12,6 +12,10 @@ elif [ $1 == p ] || [ $1 == python ]; then
 	PYTHONPATH=$PYTHONPATH:src/python
 	shift
 	python testing/test.py $@
+elif [ $1 == go ] || [ $1 == golang ]; then
+	GOPATH=$GOPATH:$(pwd)
+	shift
+	go run testing/test.go $@
 elif [ $1 == clean ]; then
 	rm -r build
 fi

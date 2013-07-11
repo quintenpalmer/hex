@@ -10,7 +10,7 @@ def main():
 		debug = int(sys.argv[1])
 		instr = sys.argv[2]
 	else:
-		with open("data/instruction.txt",'r') as f:
+		with open("config.txt",'r') as f:
 			debug,instr = [line.strip() for line in f.readline().split(',')]
 			debug = int(debug)
 	if instr == "all":
