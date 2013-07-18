@@ -18,13 +18,17 @@ Run
 ---
 To run the python test, from the root of
 the project run:
+
 	./hex python
 
 To run the Java test, from the root of the
 project run:
+
 	./hex javacompile
+
 	./hex java
 
 To run the Go test, from the root of the project
 run:
+
 	./hex go
