@@ -9,6 +9,7 @@
 2,4,0,2,4,0,true
 2,0,3,0,2,1,true
 3,0,1,2,1,0,true
+1,3,4,0,4,3,true
 # going through the different cases for +/-x +/-y and +/-z
 #
 #@ +x +y +z
