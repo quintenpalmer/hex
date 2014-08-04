@@ -26,6 +26,10 @@ main () {
         GOPATH=$GOPATH:$(pwd) go build testing/test.go
         mv test bin/gotest
         GOPATH=$GOPATH:$(pwd) go run testing/test.go
+    elif [ $1 == h ] || [ $1 == haskell ]; then
+        ghc -hidir build -odir build -i src/haskell/Loc.hs testing/Test.hs
+        mv testing/Test bin/hextest
+        ./bin/hextest
     elif [ $1 == clean ]; then
         rm -rf build
         rm -rf bin
