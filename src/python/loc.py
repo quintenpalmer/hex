@@ -31,9 +31,9 @@ class Loc:
 		# II and III
 		# -x +y +z
 		elif rx <= 0 and ry >= 0 and rz >= 0:
-			amount  = self.near_zero(rx,ry)
+			amount = self.near_zero(rx,ry)
 			if ax > ay:
-				amount = - amount
+				amount = -amount
 			elif ax == ay:
 				amount = -abs(amount)
 		# III and IV
