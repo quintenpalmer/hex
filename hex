@@ -45,8 +45,6 @@ runC() {
 cleanAll() {
     rm -rf build
     rm -rf bin
-    find . -name "*.hi" | xargs rm
-    find . -name "*.o" | xargs rm
 }
 
 main () {
