@@ -13,33 +13,65 @@ setupDirs() {
     setupDir bin
 }
 
+runJava() {
+    javac -cp src/java:testing -d build testing/Test.java
+    java -cp build testing.Test
+}
+
+runPython() {
+    PYTHONPATH=$PYTHONPATH:src/python
+    python testing/test.py
+}
+
+runGo() {
+    GOPATH=$GOPATH:$(pwd) go build testing/test.go
+    mv test bin/gotest
+    GOPATH=$GOPATH:$(pwd) go run testing/test.go
+}
+
+runHaskell() {
+    ghc -hidir build -odir build -i src/haskell/Loc.hs testing/Test.hs
+    mv testing/Test bin/hextest
+    ./bin/hextest
+}
+
+runC() {
+    gcc -I src/c -o build/loc.o -c src/c/loc.c
+    gcc -I src/c -o build/test.o -c testing/test.c
+    gcc build/test.o build/loc.o -o bin/ctest
+    ./bin/ctest
+}
+
+cleanAll() {
+    rm -rf build
+    rm -rf bin
+    find . -name "*.hi" | xargs rm
+    find . -name "*.o" | xargs rm
+}
 
 main () {
     setupDirs
     if [ $1 == j ] || [ $1 == java ]; then
-        javac -cp src/java:testing -d build testing/Test.java
-        java -cp build testing.Test
+        runJava
     elif [ $1 == p ] || [ $1 == python ]; then
-        PYTHONPATH=$PYTHONPATH:src/python
-        python testing/test.py
+        runPython
     elif [ $1 == g ] || [ $1 == go ] || [ $1 == golang ]; then
-        GOPATH=$GOPATH:$(pwd) go build testing/test.go
-        mv test bin/gotest
-        GOPATH=$GOPATH:$(pwd) go run testing/test.go
+        runGo
     elif [ $1 == h ] || [ $1 == haskell ]; then
-        ghc -hidir build -odir build -i src/haskell/Loc.hs testing/Test.hs
-        mv testing/Test bin/hextest
-        ./bin/hextest
+        runHaskell
     elif [ $1 == c ]; then
-        gcc -I src/c -o build/loc.o -c src/c/loc.c
-        gcc -I src/c -o build/test.o -c testing/test.c
-        gcc build/test.o build/loc.o -o bin/ctest
-        ./bin/ctest
+        runC
     elif [ $1 == clean ]; then
-        rm -rf build
-        rm -rf bin
-        find . -name "*.hi" | xargs rm
-        find . -name "*.o" | xargs rm
+        cleanAll
+    elif [ $1 == a ] || [ $1 == all ]; then
+        runJava
+        runPython
+        runGo
+        runHaskell
+        runC
+    else
+        echo "Enter one of (java|python|golang|haskell|c)"
+        exit 1
     fi
 }
 
