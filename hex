@@ -30,6 +30,11 @@ main () {
         ghc -hidir build -odir build -i src/haskell/Loc.hs testing/Test.hs
         mv testing/Test bin/hextest
         ./bin/hextest
+    elif [ $1 == c ]; then
+        gcc -I src/c -o build/loc.o -c src/c/loc.c
+        gcc -I src/c -o build/test.o -c testing/test.c
+        gcc build/test.o build/loc.o -o bin/ctest
+        ./bin/ctest
     elif [ $1 == clean ]; then
         rm -rf build
         rm -rf bin
