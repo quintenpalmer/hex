@@ -32,3 +32,5 @@ To run the Go test, from the root of the project
 run:
 
 	./hex go
+
+![Reference Hex Diagram](misc/hex_reference.png)
